@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Registro</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">CRUD Person</a>
+        </div>
+      </nav>
+    </header>
+    <main class="container mt-4">
+      <section>
+        <!-- Formulario de edición -->
+        <form action="/update" method="post" autocomplete="off">
+          <input type="hidden" name="id" value="<%= person.id %>" />
+          <div class="card">
+            <div class="card-header">
+              <a href="/" class="btn btn-sm btn-primary">Mostrar Lista</a>
+            </div>
+            <div class="card-body">
+              <!-- Campo Nombre -->
+              <div class="mb-3 form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="namess"
+                  name="namess"
+                  placeholder="Nombre"
+                  value="<%= person.namess %>"
+                />
+                <label for="namess">Nombre</label>
+              </div>
+              <!-- Campo Apellido -->
+              <div class="mb-3 form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="surnames"
+                  name="surnames"
+                  placeholder="Apellido"
+                  value="<%= person.surnames %>"
+                />
+                <label for="surnames">Apellido</label>
+              </div>
+              <!-- Campo Fecha de Nacimiento -->
+              <div class="mb-3 form-floating">
+                <input
+                  type="date"
+                  class="form-control"
+                  id="date_nac"
+                  name="date_nac"
+                  placeholder="Fecha de Nacimiento"
+                  value="<%= new Date(person.date_nac).toISOString().split('T')[0] %>"
+                />
+                <label for="date_nac">Fecha de Nacimiento</label>
+              </div>
+              <!-- Campo Dirección -->
+              <div class="mb-3 form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="direction"
+                  name="direction"
+                  placeholder="Dirección"
+                  value="<%= person.direction %>"
+                />
+                <label for="direction">Dirección</label>
+              </div>
+              <!-- Campo Estado Civil -->
+              <div class="mb-3">
+                <label for="marital_status" class="form-label">Estado Civil</label>
+                <select name="marital_status" id="marital_status" class="form-select">
+                  <option value="">Seleccione</option>
+                  <option value="Soltero" <%= person.marital_status === 'Soltero' ? 'selected' : '' %> >Soltero</option>
+                  <option value="Casado" <%= person.marital_status === 'Casado' ? 'selected' : '' %> >Casado</option>
+                  <option value="Divorciado" <%= person.marital_status === 'Divorciado' ? 'selected' : '' %> >Divorciado</option>
+                  <option value="Viudo" <%= person.marital_status === 'Viudo' ? 'selected' : '' %> >Viudo</option>
+                </select>
+              </div>
+              <!-- Campo Nacionalidad -->
+              <div class="mb-3">
+                <label for="nationality" class="form-label">Nacionalidad</label>
+                <select name="nationality" id="nationality" class="form-select">
+                  <option value="">Seleccione</option>
+                  <option value="PERU" <%= person.nationality === 'PERU' ? 'selected' : '' %> >PERU</option>
+                  <option value="EE.UU" <%= person.nationality === 'EE.UU' ? 'selected' : '' %> >EE.UU</option>
+                  <option value="RUSIA" <%= person.nationality === 'RUSIA' ? 'selected' : '' %> >RUSIA</option>
+                  <option value="ESPAÑA" <%= person.nationality === 'ESPAÑA' ? 'selected' : '' %> >ESPAÑA</option>
+                  <option value="VENEZUELA" <%= person.nationality === 'VENEZUELA' ? 'selected' : '' %> >VENEZUELA</option>
+                  <option value="COLOMBIA" <%= person.nationality === 'COLOMBIA' ? 'selected' : '' %> >COLOMBIA</option>
+                  <option value="BRAZIL" <%= person.nationality === 'BRAZIL' ? 'selected' : '' %> >BRAZIL</option>
+                  <option value="ARGENTINA" <%= person.nationality === 'ARGENTINA' ? 'selected' : '' %> >ARGENTINA</option>
+                  <option value="OTHERS" <%= person.nationality === 'OTHERS' ? 'selected' : '' %> >OTROS</option>
+                </select>
+              </div>
+              <!-- Campo Sexo -->
+              <div class="mb-3">
+                <label for="sex" class="form-label">Sexo</label>
+                <select name="sex" id="sex" class="form-select">
+                  <option value="">Seleccione</option>
+                  <option value="M" <%= person.sex === 'M' ? 'selected' : '' %> >M</option>
+                  <option value="F" <%= person.sex === 'F' ? 'selected' : '' %> >F</option>
+                </select>
+              </div>
+              <!-- Campo ¿Tiene Hijos? -->
+              <div class="mb-3">
+                <label for="isChildren" class="form-label">¿Tiene Hijos?</label>
+                <select name="isChildren" id="isChildren" class="form-select">
+                  <option value="">Seleccione</option>
+                  <option value="1" <%= person.isChildren ? 'selected' : '' %> >Sí</option>
+                  <option value="0" <%= !person.isChildren ? 'selected' : '' %> >No</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-footer text-end">
+              <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
+              <a href="/" class="btn btn-sm btn-secondary">Cancelar</a>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer class="mt-4 text-center">
+      <p>&copy; 2025 CRUD Person</p>
+    </footer>
+  </body>
+</html>
